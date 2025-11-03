@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Adorrable Cakes - African-inspired Cakes</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --shadow: 0 6px 18px rgba(0,0,0,.08);
+      --green: #25D366;          /* WhatsApp green */
+      --gold: #D97706;           /* warm gold/orange */
+      --teal: #0A7D8C;            /* Africa-inspired teal */
+      --orange: #F59E0B;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color: var(--text); background: var(--bg); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Navigation */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid #f0f0f0; background: #fff; position: sticky; top: 0; z-index: 100; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.05rem; }
+    .brand-mark { width: 34px; height: 34px; border-radius: 8px; background: linear-gradient(135deg, #2F8A62, #1D8F6E); display: inline-flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; }
+    .nav-actions { display: flex; gap: 8px; align-items: center; }
+    .nav-btn { background: none; border: 0; padding: 8px 12px; border-radius: 8px; color: var(--text); font-weight: 600; cursor: default; }
+
+    /* Hero */
+    .hero { display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; padding: 48px 0 60px; position: relative; }
+    .hero-content { padding: 20px; }
+    .h1 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.04; margin: 0 0 12px; font-weight: 900; letter-spacing: -0.5px; }
+    .sub { color: var(--muted); font-size: 1.05rem; max-width: 60ch; }
+    .cta { display: flex; align-items: center; gap: 14px; margin-top: 14px; }
+    .cta-btn { background: var(--green); color: #fff; border: none; padding: 12px 18px; border-radius: 999px; font-weight: 700; cursor: default; }
+    .wa-link { font-size: 0.92rem; color: #555; }
+    .hero-visual { padding: 0 20px; display: flex; justify-content: center; align-items: center; }
+    .hero-visual img { width: 100%; height: auto; border-radius: 18px; box-shadow: 0 15px 40px rgba(0,0,0,.08); }
+    .pattern { position: absolute; top: -60px; right: -60px; width: 260px; height: 260px; opacity: .05; background: radial-gradient(circle at 20% 20%, #e85d04 0%, #e0a84a 40%, #f7f0e6 60%); border-radius: 50%; filter: blur(0); }
+
+    /* Sections */
+    .section { padding: 60px 0; }
+    .section h2 { font-size: 2rem; margin-bottom: 8px; }
+    .section .sub { color: var(--muted); margin-bottom: 2px; font-size: 1rem; }
+    .grid { display: grid; gap: 20px; }
+    .features { grid-template-columns: repeat(4, 1fr); }
+    .card { background: var(--card); border: 1px solid #f0f0f0; border-radius: 14px; padding: 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; min-height: 120px; }
+    .card-icon { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; background: #fff; border: 1px solid #eee; font-size: 20px; }
+    .card-title { font-weight: 700; margin: 6px 0; }
+    .card-desc { color: var(--muted); font-size: 0.95rem; }
+    .image-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 8px; }
+    .image-row img { width: 100%; height: auto; border-radius: 12px; }
+
+    .story { display: flex; gap: 20px; align-items: center; }
+    .story img { width: 180px; height: 180px; border-radius: 14px; object-fit: cover; }
+
+    .testimonials { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .quote { padding: 16px; background: #fff; border-left: 4px solid var(--teal); border-radius: 8px; box-shadow: var(--shadow); }
+
+    .cta-section { text-align: center; }
+    .cta-wide { display: inline-flex; gap: 12px; align-items: center; padding: 12px 18px; border-radius: 999px; background: var(--green); color: #fff; font-weight: 700; border: 0; cursor: default; }
+
+    /* Footer */
+    .footer { padding: 28px 0; border-top: 1px solid #f0f0f0; background: #fafafa; color: #333; font-size: 0.95rem; }
+    .footer .cols { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; align-items: start; }
+    .footer small { display: block; margin-top: 6px; color: var(--muted); }
+    .footer .link { color: var(--teal); }
+    .footer .name { font-weight: 700; }
+    .credit { text-align: center; padding-top: 8px; color: #666; }
+
+    /* Floating messaging button (WhatsApp) */
+    .floating { position: fixed; right: 20px; bottom: 20px; z-index: 999; }
+    .fab { width: 58px; height: 58px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(0,0,0,.15); border: none; cursor: default; }
+    .fab svg { width: 28px; height: 28px; fill: #fff; }
+
+    /* Responsive */
+    @media (max-width: 1020px) {
+      .hero { grid-template-columns: 1fr; padding: 20px; }
+      .hero-visual { order: -1; padding: 0; }
+      .features { grid-template-columns: repeat(2, 1fr); }
+      .story { flex-direction: column; align-items: flex-start; }
+      .footer .cols { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .features { grid-template-columns: 1fr; }
+      .nav-actions { display: none; }
+      .testimonials { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav aria-label='Main'>
+    <div class='container brand'>
+      <div class='brand-mark' aria-label='Brand mark'>A</div>
+      <div>Adorrable Cakes</div>
+    </div>
+    <div class='container nav-actions' aria-label='Navigation'>
+      <button class='nav-btn' type='button' aria-label='Home'>Home</button>
+      <button class='nav-btn' type='button' aria-label='Flavors'>Flavors</button>
+      <button class='nav-btn' type='button' aria-label='Story'>Story</button>
+      <button class='nav-btn' type='button' aria-label='Testimonials'>Testimonials</button>
+      <button class='nav-btn' type='button' aria-label='Contact'>Contact</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class='hero' aria-label='Hero'>
+    <div class='hero-content container'>
+      <h1 class='h1'>Delicious Cakes for Every Celebration</h1>
+      <p class='sub'>From vibrant birthday layers to cozy afternoon tea treats, our cakes are baked fresh with love, using warm, African-inspired flavors and colors that celebrate family, joy, and togetherness.</p>
+      <div class='cta' role='group' aria-label='Hero CTAs'>
+        <button class='cta-btn' type='button' aria-label='View flavors'>View Flavors</button>
+        <span class='wa-link' aria-label='WhatsApp placeholder link'>WhatsApp: wa.me/1234567890</span>
+      </div>
+    </div>
+    <div class='hero-visual container' aria-label='Hero image'>
+      <img src='https://im.runware.ai/image/ws/2/ii/f2a50e56-4bfe-43eb-a216-24f7e3c840d9.jpg' alt='Display of assorted cakes in a warm African-inspired shop'>
+    </div>
+    <div class='pattern' aria-hidden='true'></div>
+  </section>
+
+  <!-- Features -->
+  <section class='section' id='features' aria-label='Features'>
+    <div class='container'>
+      <h2>What we bake</h2>
+      <p class='sub' style='max-width:700px;'>Handcrafted cakes with bold flavors, vibrant colors, and customization that fits every occasion.</p>
+      <div class='grid features' role='list'>
+        <article class='card' role='listitem'>
+          <div class='card-icon' aria-label='Freshly baked'>🍰</div>
+          <div class='card-title'>Freshly Baked Daily</div>
+          <div class='card-desc'>Rising dough, warm ovens, and kitchen aromas that beguile.</div>
+        </article>
+        <article class='card' role='listitem'>
+          <div class='card-icon' aria-label='Customization'>🎨</div>
+          <div class='card-title'>Custom Designs</div>
+          <div class='card-desc'>From message toppers to cultural motifs—your cake, your story.</div>
+        </article>
+        <article class='card' role='listitem'>
+          <div class='card-icon' aria-label='Flavors'>🧁</div>
+          <div class='card-title'>Bold African Flavors</div>
+          <div class='card-desc'>Mango, baobab, peanut, cocoa—crafted to delight.</div>
+        </article>
+        <article class='card' role='listitem'>
+          <div class='card-icon' aria-label='Delivery'>🚚</div>
+          <div class='card-title'>Delivery Across Cities</div>
+          <div class='card-desc'>Fresh to your doorstep with careful packaging.</div>
+        </article>
+      </div>
+
+      <div class='image-row' style='margin-top:28px;'>
+        <img src='https://im.runware.ai/image/ws/2/ii/8f5a7d49-5921-4cf6-9516-82f4170357aa.jpg' alt='Close-up of mango-infused cake'>
+        <img src='https://im.runware.ai/image/ws/2/ii/a007904c-bcfc-4118-9a8e-c9533aaaee84.jpg' alt='Assorted cupcakes with African motifs'>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class='section' id='story' aria-label='Our Story'>
+    <div class='container story'>
+      <img src='https://im.runware.ai/image/ws/2/ii/f450ec2a-c192-4b71-82e2-92bb09edc6e4.jpg' alt='Bakery team at work'>
+      <div>
+        <h2>Our Story</h2>
+        <p class='sub' style='max-width:700px;'>Adorrable Cakes started in a small kitchen with a big dream: to bring joyful, culturally rich desserts to every table. We celebrate African hospitality with recipes passed down through generations, reimagined for modern tastes with a playful twist.</p>
+        <p class='sub' style='max-width:700px;'>Every cake is baked with seasonal ingredients, ethical sourcing, and a dash of sunshine. We love making moments memorable—one slice at a time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class='section' id='testimonials' aria-label='Testimonials'>
+    <div class='container'>
+      <h2>What people say</h2>
+      <p class='sub' style='max-width:700px;'>Loved by families, event planners, and neighbors alike.</p>
+      <div class='testimonials' role='list'>
+        <blockquote class='quote' role='listitem'>
+          “The mango cake was a burst of sunshine. Fluffy, flavorful, and beautifully decorated for our family reunion.”
+          <br><strong>- Nia, Lagos</strong>
+        </blockquote>
+        <blockquote class='quote' role='listitem'>
+          “Custom design exceeded our expectations. The colors matched our theme perfectly.”
+          <br><strong>- Kamau, Nairobi</strong>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class='section' id='cta' aria-label='Call to action'>
+    <div class='container cta-section'>
+      <h2>Ready to celebrate with cake?</h2>
+      <p class='sub' style='max-width:720px; margin:0 auto 18px;'>Place an order or chat with us to discuss flavors, sizes, and delivery options.</p>
+      <div class='cta' style='justify-content:center;' aria-label='Order CTAs'>
+        <button class='cta-btn' type='button' aria-label='Order Now'>Order Now</button>
+        <span class='wa-link' aria-label='WhatsApp placeholder link'>WhatsApp: wa.me/1234567890</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class='footer' aria-label='Footer'>
+    <div class='container cols'>
+      <div>
+        <p class='name'>Adorrable Cakes</p>
+        <p><strong>Address:</strong> 123 Market Street, Lagos, Africa</p>
+        <p><strong>Email:</strong> hello@adorrable.dev</p>
+      </div>
+      <div>
+        <p><strong>Connect with us</strong></p>
+        <p>Phone: +234 800 000 0000</p>
+        <p>WhatsApp: wa.me/1234567890</p>
+      </div>
+    </div>
+    <p class='credit'>made with ❤️ by adorrable.dev</p>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <div class='floating' aria-label='WhatsApp contact floating button'>
+    <button class='fab' type='button' aria-label='Chat on WhatsApp' title='Chat on WhatsApp' data-link='https://wa.me/1234567890'>
+      <svg viewBox='0 0 24 24' aria-label='WhatsApp Icon' role='img'>
+        <path d='M20.5 3h-17A2.5 2.5 0 001 5.5v13A2.5 2.5 0 003.5 21h13a2.5 2.5 0 002.5-2.5v-15A.5.5 0 0020.5 3zm-9.3 10.5l-.7-.1a1.7 1.7 0 01-1-.8l-1-.7a7 7 0 01-1-1.3A1.1 1.1 0 018 7h.2a1 1 0 01.9.8l.3.9a4 4 0 001.9 2.6 2.7 2.7 0 001.1.2h.6a1 1 0 00.7-.3l.5-.5-.2-.2-1.1-1a6 6 0 01-1.4-.9l-.3-.3.3-.3a6 6 0 00.3-.4l.2-.4A2 2 0 0011 3h0' />
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    // Floating button tooltip behavior (no navigation on click as per placeholder requirement)
+    const floatBtn = document.querySelector('.fab');
+    if (floatBtn) {
+      floatBtn.addEventListener('mouseenter', () => {
+        floatBtn.title = 'Chat on WhatsApp';
+      });
+      floatBtn.addEventListener('mouseleave', () => {
+        floatBtn.title = '';
+      });
+    }
+  </script>
+</body>
+</html>
